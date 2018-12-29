@@ -1,0 +1,15 @@
+[Unit]
+Description=Guard NS
+Before=prisonguard.target
+Requires=prisonguard.target
+
+[Service]
+PrivateNetwork=yes
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/mkdir -p /var/run/netns
+ExecStart=-/usr/bin/touch /var/run/netns/guard
+ExecStart=/bin/mount --bind /proc/self/ns/net /var/run/netns/guard
+ExecStart=/bin/ip link set lo up
+ExecStop=/bin/umount /var/run/netns/guard
+ExecStop=/bin/rm /var/run/netns/guard

@@ -1,0 +1,9 @@
+[Unit]
+Requires=prison-ns.service
+After=prison-ns.service
+JoinsNamespaceOf=prison-ns.service
+
+[Service]
+PrivateNetwork=yes
+Type=oneshot
+ExecStart=/bin/ip link

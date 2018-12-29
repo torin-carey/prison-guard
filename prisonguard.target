@@ -1,0 +1,4 @@
+[Unit]
+Description=Prison Guard Online
+Requires=prison-ns.service guard-ns.service prisonguard-interface.service
+After=prisonguard-interface.service

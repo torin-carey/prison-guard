@@ -1,0 +1,11 @@
+[Unit]
+Description=Prison Guard Interface Setup
+Requires=prison-ns.service guard-ns.service
+After=prison-ns.service guard-ns.service
+Before=prisonguard.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/home/tcarey/Documents/git/prison-guard/scripts/interface-setup.sh start
+ExecStop=/home/tcarey/Documents/git/prison-guard/scripts/interface-setup.sh stop
