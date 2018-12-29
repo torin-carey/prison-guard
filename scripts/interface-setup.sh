@@ -14,21 +14,6 @@ GUARDPRISON=(172.31.1.2 172.31.1.3 31)
 set -x
 
 case $1 in
-prison-ns-start)
-	/bin/mkdir -p /var/run/netns
-	/usr/bin/touch /var/run/netns/prison || true
-	/bin/mount --bind /proc/self/ns/net /var/run/netns/prison
-	$IP link set lo up
-	;;
-prison-ns-stop)
-
-	;;
-guard-ns-start)
-
-	;;
-guard-ns-stop)
-
-	;;
 start)
 	set -e
 	$IP link add ${VETH[0]} type veth peer name ${VETH[1]}
