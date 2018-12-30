@@ -4,7 +4,7 @@ IP=/sbin/ip
 IPTABLES=/sbin/iptables
 NETNS1=prison
 NETNS2=guard
-TABLE=prisonguard
+TABLE=(prisonguard prisonguard_fallback)
 
 
 VETH=(veth-host veth-ghost veth-gpris veth-pris)
@@ -33,8 +33,8 @@ start)
 	$IP netns exec $NETNS2 $IP route add default via ${HOSTGUARD[0]}
 	$IP route add ${GUARDPRISON[0]}/${GUARDPRISON[2]} via ${HOSTGUARD[1]}
 
-	$IP netns exec $NETNS2 $IP route add unreachable default table $TABLE
-	$IP netns exec $NETNS2 $IP route add ${HOSTGUARD[0]} via ${HOSTGUARD[0]} table $TABLE
+	$IP netns exec $NETNS2 $IP route add unreachable default table ${TABLE[1]}
+	$IP netns exec $NETNS2 $IP route add ${HOSTGUARD[0]} via ${HOSTGUARD[0]} table ${TABLE[0]} dev ${VETH[1]}
 	$IP netns exec $NETNS2 $IP rule add iif ${VETH[2]} table $TABLE
 	
 	$IPTABLES -t nat -A POSTROUTING -s ${HOSTGUARD[1]} -j MASQUERADE
