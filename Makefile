@@ -16,8 +16,4 @@ install:
 	install -m 644 prison-ns.service $(SYSTEMD_PREFIX)/system/prison-ns.service
 	install -m 644 guard-ns.service $(SYSTEMD_PREFIX)/system/guard-ns.service
 	install -m 644 prisonguard-interface.service $(SYSTEMD_PREFIX)/system/prisonguard-interface.service
-	install -m 644 prisonguard-vpn.service $(SYSTEMD_PREFIX)/system/prisonguard-vpn.service
 	install -m 644 prisonguard-openvpn@.service $(SYSTEMD_PREFIX)/system/prisonguard-openvpn@.service
-	install -m 644 prisonguard-checkip.service $(SYSTEMD_PREFIX)/system/prisonguard-checkip.service
-	install -m 644 prisonguard-firefox.service $(SYSTEMD_PREFIX)/system/prisonguard-firefox.service
-	install -m 644 prisonguard-chromium.service $(SYSTEMD_PREFIX)/system/prisonguard-chromium.service

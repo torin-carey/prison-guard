@@ -1,9 +1,0 @@
-[Unit]
-Requires=prisonguard.target
-After=prisonguard.target
-JoinsNamespaceOf=prison-ns.service
-
-[Service]
-PrivateNetwork=yes
-Type=oneshot
-ExecStart=/usr/bin/curl api.ipify.org
