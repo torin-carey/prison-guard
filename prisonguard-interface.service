@@ -7,5 +7,5 @@ Before=prisonguard.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/home/tcarey/Documents/git/prison-guard/scripts/interface-setup.sh start
-ExecStop=/home/tcarey/Documents/git/prison-guard/scripts/interface-setup.sh stop
+ExecStart=/usr/local/share/prison-guard/interface-setup.sh start
+ExecStop=/usr/local/share/prison-guard/interface-setup.sh stop

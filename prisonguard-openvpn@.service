@@ -1,0 +1,21 @@
+[Unit]
+Description=Prison Guard OpenVPN Client for %I
+Requires=prisonguard.target
+Wants=network-online.target
+After=prisonguard-interface.service network-online.target
+Before=prisonguard.target
+JoinsNamespaceOf=guard-ns.service
+
+[Service]
+Type=notify
+PrivateTmp=yes
+PrivateNetwork=yes
+RuntimeDirectory=openvpn-client
+RuntimeDirectoryMode=0710
+WorkingDirectory=/etc/openvpn/client
+ExecStart=/usr/sbin/openvpn --nobind --config %i.conf --script-security 2 --route-noexec --route-up /usr/local/share/prison-guard/add_tun_route.sh --route-pre-down /usr/local/share/prison-guard/del_tun_route.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=prisonguard.target
